@@ -90,7 +90,7 @@ export default function LoginPage() {
           >
             {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : (
               <>
-                {isLogin ? 'Entrar no Sistema' : 'Criar minha conta'}
+                {isLogin ? 'Entrar' : 'Criar minha conta'}
                 <ArrowRight className="h-5 w-5" />
               </>
             )}

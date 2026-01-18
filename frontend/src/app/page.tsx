@@ -49,8 +49,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
       <div className="bg-white border border-slate-200 p-8 rounded-3xl shadow-xl shadow-slate-200/60 w-full max-w-md">
-
-        {/* Header da Autenticação */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">
             {isLogin ? 'Olá, bem-vindo(a)!' : 'Crie sua conta'}
@@ -98,8 +96,6 @@ export default function LoginPage() {
             )}
           </button>
         </form>
-
-        {/* Footer Alternar Login/Cadastro */}
         <div className="mt-8 text-center">
           <p className="text-slate-500 font-medium">
             {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}

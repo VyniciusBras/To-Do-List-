@@ -5,7 +5,7 @@ interface TaskItemProps {
     task: any;
     onToggle: (task: any) => void;
     onDelete: (id: string) => void;
-    onUpdate: (id: string, newTitle: string) => Promise<void>; // Nova prop
+    onUpdate: (id: string, newTitle: string) => Promise<void>;
     formatDate: (date: string) => string;
 }
 
@@ -23,12 +23,10 @@ export const TaskItem = ({ task, onToggle, onDelete, onUpdate, formatDate }: Tas
     return (
         <div className={`group flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-200 shadow-sm ${task.status === 'concluida' ? 'bg-slate-50 border-slate-100 opacity-60' : 'bg-white border-white hover:border-blue-200 hover:shadow-md'
             }`}>
-            {/* Checkbox */}
             <button onClick={() => onToggle(task)} className={`flex-shrink-0 transition-colors ${task.status === 'concluida' ? 'text-green-500' : 'text-slate-300 hover:text-blue-500'}`}>
                 {task.status === 'concluida' ? <CheckCircle2 className="w-7 h-7" /> : <Circle className="w-7 h-7" />}
             </button>
 
-            {/* Conteúdo Central (Texto ou Input) */}
             <div className="flex-1 flex flex-col">
                 {isEditing ? (
                     <input
@@ -50,7 +48,6 @@ export const TaskItem = ({ task, onToggle, onDelete, onUpdate, formatDate }: Tas
                 </div>
             </div>
 
-            {/* Ações */}
             <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
                 {isEditing ? (
                     <button onClick={handleSave} className="text-green-600 p-2 rounded-lg hover:bg-green-50">

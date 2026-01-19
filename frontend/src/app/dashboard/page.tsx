@@ -6,7 +6,7 @@ import { Calendar, Loader2 } from 'lucide-react';
 import { TaskItem } from '@/components/taskItem';
 import { TaskInput } from '@/components/taskInput';
 import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+import { Sidebar } from "@/components/sidebar";
 import api from '@/services/api';
 
 interface Task {
@@ -83,12 +83,10 @@ export default function Dashboard() {
         try {
             const taskToUpdate = tasks.find(t => t.id === id);
             if (!taskToUpdate) return;
-
             await api.put(`/tasks/${id}`, {
                 ...taskToUpdate,
                 titulo: newTitle
             });
-
             setTasks(tasks.map(t => t.id === id ? { ...t, titulo: newTitle } : t));
         } catch (error) {
             alert("Erro ao atualizar o título da tarefa");
@@ -98,7 +96,6 @@ export default function Dashboard() {
 
     const deleteTask = async (id: string) => {
         if (!confirm("Tem certeza que deseja excluir esta tarefa?")) return;
-
         try {
             await api.delete(`/tasks/${id}`);
             setTasks(tasks.filter(t => t.id !== id));
@@ -125,30 +122,26 @@ export default function Dashboard() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-                <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
+            <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+                <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
-            <main className="flex-1 p-4 md:p-8">
-                <div className="max-w-4xl mx-auto">
+        <div className="flex min-h-screen bg-slate-100 text-slate-900 overflow-x-hidden">
+            <Sidebar userDisplayName={userDisplayName} onLogout={logout} />
+            <main className="flex-1 ml-64 flex flex-col min-h-screen relative">
+                <div className="max-w-4xl mx-auto w-full px-4 md:px-0 pt-12 pb-32 flex-1">
 
-                    <Header userDisplayName={userDisplayName} onLogout={logout} />
-
-                    <div className="mb-8">
-                        <TaskInput value={newTaskTitle} onChange={setNewTaskTitle} onSubmit={handleAddTask} />
-                    </div>
-
+                    <Header />
                     {totalTasks > 0 && (
-                        <div className="mb-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <div className="mb-8 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
                             <div className="flex justify-between items-center mb-2">
                                 <span className="text-sm font-bold text-slate-700">Progresso</span>
                                 <span className="text-sm font-bold text-blue-600">{completedTasks} de {totalTasks}</span>
                             </div>
-                            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                                 <div
                                     className="bg-blue-600 h-full transition-all duration-500 ease-out"
                                     style={{ width: `${progressPercentage}%` }}
@@ -176,8 +169,16 @@ export default function Dashboard() {
                         )}
                     </div>
                 </div>
+                <div className="fixed bottom-0 right-0 left-64 px-4 md:px-0 pb-10 pt-10 bg-linear-to-t from-slate-50 via-slate-50/80 to-transparent pointer-events-none">
+                    <div className="max-w-4xl mx-auto w-full pointer-events-auto">
+                        <TaskInput
+                            value={newTaskTitle}
+                            onChange={setNewTaskTitle}
+                            onSubmit={handleAddTask}
+                        />
+                    </div>
+                </div>
             </main>
-            <Footer />
         </div>
     );
 }

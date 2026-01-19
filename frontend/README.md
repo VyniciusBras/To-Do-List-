@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend - To-Do App
 
-## Getting Started
+## Descrição
 
-First, run the development server:
+Este é o frontend da aplicação To-Do, uma interface web desenvolvida com Next.js e TypeScript. O objetivo principal é fornecer uma interface amigável para usuários gerenciarem suas tarefas diárias, com funcionalidades de autenticação, criação, edição e exclusão de tarefas simples e eficiente.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tecnologias Utilizadas
+
+- **Next.js**: Framework React para aplicações web full-stack.
+- **React**: Biblioteca para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript com tipagem estática.
+- **Tailwind CSS**: Framework CSS utilitário para estilização rápida.
+- **Axios**: Cliente HTTP para fazer requisições à API backend.
+- **Lucide React**: Biblioteca de ícones para React.
+- **PostCSS**: Ferramenta para processamento de CSS.
+- **ESLint**: Ferramenta de linting para JavaScript/TypeScript.
+
+## Estrutura do Projeto
+
+```
+frontend/
+├── package.json              # Dependências e scripts do projeto
+├── tsconfig.json             # Configuração do TypeScript
+├── next.config.ts            # Configuração do Next.js
+├── tailwind.config.ts        # Configuração do Tailwind CSS
+├── postcss.config.mjs        # Configuração do PostCSS
+├── eslint.config.mjs         # Configuração do ESLint
+├── public/                   # Arquivos estáticos
+├── src/
+│   ├── app/                  # Páginas e layouts do Next.js App Router
+│   │   ├── globals.css       # Estilos globais
+│   │   ├── layout.tsx        # Layout principal
+│   │   ├── page.tsx          # Página inicial
+│   │   └── dashboard/        # Página do dashboard
+│   │       └── page.tsx
+│   ├── components/           # Componentes reutilizáveis
+│   │   ├── authInput.tsx     # Componente de input para autenticação
+│   │   ├── header.tsx        # Cabeçalho da aplicação
+│   │   ├── sidebar.tsx       # Barra lateral
+│   │   ├── taskInput.tsx     # Componente para adicionar tarefas
+│   │   └── taskItem.tsx      # Componente para exibir tarefas
+│   └── services/             # Serviços para integração com API
+│       └── api.ts            # Configuração do Axios para chamadas à API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Como Usar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Instalar dependências**:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```
+   npm install
+   ```
 
-## Learn More
+2. **Executar a aplicação em modo de desenvolvimento**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Acessar a aplicação**:
+   - Abra o navegador e vá para `http://localhost:3000`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Construir para produção**:
+   ```
+   npm run build
+   npm start
+   ```
 
-## Deploy on Vercel
+## Funcionalidades Principais
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Autenticação**: Login e registro de usuários.
+- **Dashboard**: Visualização de tarefas do usuário.
+- **Gerenciamento de Tarefas**: Criar, editar, marcar como concluída e excluir tarefas.
+- **Interface Responsiva**: Design adaptável para diferentes dispositivos.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Integração com Backend
+
+A aplicação se conecta à API backend via Axios. Certifique-se de que o backend esteja rodando em `http://127.0.0.1:8000` para que as requisições funcionem corretamente.
+
+## Scripts Disponíveis
+
+- `npm run dev`: Inicia o servidor de desenvolvimento.
+- `npm run build`: Constrói a aplicação para produção.
+- `npm start`: Inicia o servidor de produção.
+- `npm run lint`: Executa o linter para verificar código.

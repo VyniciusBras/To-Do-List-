@@ -1,4 +1,6 @@
-import { Plus } from "lucide-react";
+'use client';
+
+import { Plus } from 'lucide-react';
 
 interface TaskInputProps {
     value: string;
@@ -10,25 +12,23 @@ export function TaskInput({ value, onChange, onSubmit }: TaskInputProps) {
     return (
         <form
             onSubmit={onSubmit}
-            className="group w-full bg-white flex items-center gap-4 p-4 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/10"
+            className="w-full bg-white dark:bg-slate-900 flex items-center gap-3 px-3 py-2 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none transition-all focus-within:border-blue-500"
         >
-            <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-blue-50 text-blue-600 transition-colors group-focus-within:bg-blue-600 group-focus-within:text-white">
-                <Plus className="w-5 h-5" />
-            </div>
+            <button
+                type="submit"
+                disabled={!value.trim()}
+                className="p-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-100 dark:disabled:bg-slate-700 text-white disabled:text-slate-400 rounded-xl transition-all active:scale-95 shadow-lg shadow-blue-500/20 disabled:shadow-none shrink-0"
+            >
+                <Plus className="w-6 h-6 stroke-[3px]" />
+            </button>
+
             <input
                 type="text"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 placeholder="O que você vai fazer hoje?"
-                className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder:text-slate-400 font-medium text-lg"
+                className="flex-1 bg-transparent border-none outline-none py-3 text-slate-700 dark:text-slate-200 placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium text-lg"
             />
-            <button
-                type="submit"
-                disabled={!value.trim()}
-                className="px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-bold transition-all hover:bg-slate-800 disabled:opacity-0 disabled:scale-95"
-            >
-                Adicionar
-            </button>
         </form>
     );
 }
